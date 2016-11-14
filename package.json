@@ -1,0 +1,26 @@
+{
+  "name": "ge-ng-milan",
+  "version": "1.0.0",
+  "description": "GE Angular Init",
+  "main": "index.js",
+  "scripts": {
+    "serve": "node_modules/.bin/http-server -p 8080 www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matrai Milan",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.8"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.5.8",
+    "chai": "^3.5.0",
+    "http-server": "^0.9.0",
+    "karma": "^1.3.0",
+    "karma-chai": "^0.1.0",
+    "karma-mocha": "^1.3.0",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "mocha": "^3.1.2",
+    "phantomjs-prebuilt": "^2.1.13"
+  }
+}
