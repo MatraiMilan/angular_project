@@ -7,8 +7,15 @@
 </head>
 
 <body>
+<h1>Angular</h1>
+<p>{{2 + 2}}ngular</p>
 
 
+<div ng-controller="repeatController">
+    <input type="text" placeholder="text to repeat" ng-model="textToRepeat">
+    <input type="number" ng-model="repeatNumber">
+    <input type="button" value="repeat" ng-click="repeatString()">
+</div>
 
 
 <script src="lib/angular.min.js"></script>
