@@ -4,53 +4,80 @@
     <meta charset="UTF-8">
     <meta >
     <title>Title</title>
-    <link type="text/css" href="lib/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-<div id="asideMenu" >
-    <div id="headerDiv">
+
+<div style="padding-left: 5%; padding-right: 5%">
+
+    <div id="headerDiv" class="page-header">
         <h2>Expense manager</h2>
     </div>
 
-    <div id="formDiv" ng-controller="asideMenuCtrl">
-        <form>
-            <span>income: </span><input type="radio" name="minusOrPlus" ng-model="radio" value="income" />
-            <span>expense: </span><input type="radio" name="minusOrPlus" ng-model="radio" value="expense" /><br />
-            <input type="number" name="money" min="1" ng-model="money"> <span>HUF</span><br />
-            <input type="date" name="date" ng-model="date"><br />
-            <input type="text" name="description" placeholder="description" ng-model="desc"><br />
-            <input type="button" value="add" ng-click="addDataToTable()">
-        </form>
+    <div class="row">
+        <div id="asideMenu" class="col-xs-4">
+            <div id="formDiv" ng-controller="asideMenuCtrl" style="padding-right: 10%">
+                <form>
+                    <div ng-init="radio='expense'">
+                        <span>Income: </span><input type="radio" name="minusOrPlus" ng-model="radio" value="income" />
+                        <span>Expense: </span><input type="radio" name="minusOrPlus" ng-model="radio" value="expense" />
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="money" placeholder="Amount (in HUF)">
+                        <span class="input-group-addon">Ft</span><br />
+                    </div>
+                        <!--<input type="text" name="money" ng-model="money" placeholder="Amount (in HUF)"> <span >Ft</span><br />-->
+                    <div class="input-group">
+                        <input type="date" class="form-control" ng-model="date"> <br />
+                    </div>
+                        <!--<input type="date" name="date" ng-model="date"><br />-->
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Description" ng-model="desc"> <br />
+                    </div>
+                    <!--<input type="text" name="description" placeholder="description" ng-model="desc"><br />-->
+
+                    <div class="btn-group" role="group" aria-label="...">
+                        <input type="button" class="btn btn-default" value="add" ng-click="addDataToTable()">
+                    </div>
+
+                    <br/>
+                    <label style="padding-top: 5%">Balance: </label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="balance">
+                        <span class="input-group-addon">Ft</span><br />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="tableDiv" ng-controller="tableController" class="panel panel-default col-xs-8">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Funds
+                        </th>
+                        <th>
+                            Date
+                        </th>
+                        <th>
+                            Description
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="data in dataArray">
+                        <td>{{data.money}} Ft</td>
+                        <td>{{data.date | date : short}}</td>
+                        <td>{{data.desc}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
-
-<div id="tableDiv" ng-controller="tableController">
-
-    <table>
-        <thead>
-            <tr>
-                <th>
-                    Funds
-                </th>
-                <th>
-                    Date
-                </th>
-                <th>
-                    Description
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="data in dataArray">
-                <td>{{data.money}}</td>
-                <td>{{data.date | date : short}}</td>
-                <td>{{data.desc}}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
 
 <script src="lib/angular.min.js"></script>
 <script src="js/myApp.js"></script>
