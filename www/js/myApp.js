@@ -1,7 +1,6 @@
 var myApp = angular.module('myApp', []);
 myApp.controller('asideMenuCtrl', function ($scope, $rootScope) {
     $rootScope.dataArray = [];
-    // console.log(element(by.binding('radio')));
     $scope.addDataToTable = function () {
         var money = $scope.money;
         console.log($scope);
