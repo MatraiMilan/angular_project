@@ -4,17 +4,51 @@
     <meta charset="UTF-8">
     <meta >
     <title>Title</title>
+    <link type="text/css" href="lib/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-<h1>Angular</h1>
-<p>{{2 + 2}}ngular</p>
+<div id="asideMenu" >
+    <div id="headerDiv">
+        <h2>Expense manager</h2>
+    </div>
 
+    <div id="formDiv" ng-controller="asideMenuCtrl">
+        <form>
+            <span>income: </span><input type="radio" name="minusOrPlus" ng-model="radio" value="income" />
+            <span>expense: </span><input type="radio" name="minusOrPlus" ng-model="radio" value="expense" /><br />
+            <input type="number" name="money" min="1" ng-model="money"> <span>HUF</span><br />
+            <input type="date" name="date" ng-model="date"><br />
+            <input type="text" name="description" placeholder="description" ng-model="desc"><br />
+            <input type="button" value="add" ng-click="addDataToTable()">
+        </form>
+    </div>
+</div>
 
-<div ng-controller="repeatController">
-    <input type="text" placeholder="text to repeat" ng-model="textToRepeat">
-    <input type="number" ng-model="repeatNumber">
-    <input type="button" value="repeat" ng-click="repeatString()">
+<div id="tableDiv" ng-controller="tableController">
+
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Funds
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Description
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="data in dataArray">
+                <td>{{data.money}}</td>
+                <td>{{data.date | date : short}}</td>
+                <td>{{data.desc}}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 
