@@ -15,9 +15,9 @@
         <h2>Expense manager</h2>
     </div>
 
-    <div class="row">
+    <div class="row" ng-controller="asideMenuCtrl">
         <div id="asideMenu" class="col-xs-4">
-            <div id="formDiv" ng-controller="asideMenuCtrl" style="padding-right: 10%">
+            <div id="formDiv" style="padding-right: 10%">
                 <form>
                     <div ng-init="radio='expense'">
                         <span>Income: </span><input type="radio" name="minusOrPlus" ng-model="radio" value="income" />
@@ -57,7 +57,7 @@
             </div>
         </div>
 
-        <div id="tableDiv" ng-controller="tableController" class="panel panel-default col-xs-8" style="overflow-y: scroll; height: 85vh">
+        <div id="tableDiv" class="panel panel-default col-xs-8" style="overflow-y: scroll; height: 70vh">
 
             <table class="table">
                 <thead>
@@ -74,10 +74,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="data in dataArray">
+                    <tr ng-repeat="data in dataArray |  limitTo : 10"> <!--orderBy : 'date' : true |-->
                         <td>{{data.money}} Ft</td>
                         <td>{{data.date | date : short}}</td>
                         <td>{{data.desc}}</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="...">
+                                <input type="button" class="btn btn-default" value="Delete" ng-click="deleteRow(data.id)">
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -87,5 +92,6 @@
 
 <script src="lib/angular.min.js"></script>
 <script src="js/myApp.js"></script>
+<script src="lib/storageServiceServer.js"></script>
 </body>
 </html>

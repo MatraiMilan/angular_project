@@ -1,14 +1,16 @@
 var myApp = angular.module('myApp', []);
 
 myApp.controller('asideMenuCtrl', function ($scope, $rootScope, storageService) {
-    console.log(storageService);
+
     $rootScope.dataArray = [];
 
+
+    var currentId = 0;
     var balance = 0;
 
     $scope.addDataToTable = function () {
         var money = Number($scope.money);
-        if(!isNaN(money)) {
+        if (!isNaN(money)) {
             console.log($scope);
             if ($scope.radio == "expense") {
                 money = money * -1;
@@ -16,10 +18,21 @@ myApp.controller('asideMenuCtrl', function ($scope, $rootScope, storageService) 
             var obj = {
                 money: money,
                 date: $scope.date,
-                desc: $scope.desc
+                desc: $scope.desc,
+                id: currentId++
             };
-            console.log(obj);
+
             $rootScope.dataArray.push(obj);
+            $rootScope.dataArray.sort(function (a, b) {
+                if (a.date < b.date) {
+                    return 1;
+                } else if (a.date > b.date) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            })
+
             balance += money;
 
             $scope.balance = balance;
@@ -28,17 +41,23 @@ myApp.controller('asideMenuCtrl', function ($scope, $rootScope, storageService) 
 
     $scope.resetDataArray = function () {
         var conf = confirm("All of the table data will be deleted.");
-        if(conf){
+        if (conf) {
             $rootScope.dataArray = [];
             balance = 0;
             $scope.balance = balance;
+            currentId = 0;
+        }
+    }
+
+    $scope.deleteRow = function (id) {
+
+        for (var i = 0; i < $rootScope.dataArray.length; i++) {
+            if (id == $rootScope.dataArray[i].id) {
+                $rootScope.dataArray.splice(i, 1);
+                            }
         }
     }
 });
-
-myApp.controller('tableController', function () {
-
-})
 
 
 myApp.service('storageService', storageServiceMemory);
