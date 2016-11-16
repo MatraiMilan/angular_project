@@ -1,8 +1,11 @@
 var myApp = angular.module('myApp', []);
-myApp.controller('asideMenuCtrl', function ($scope, $rootScope) {
+
+myApp.controller('asideMenuCtrl', function ($scope, $rootScope, storageService) {
+    console.log(storageService);
     $rootScope.dataArray = [];
+
     var balance = 0;
-    // console.log(element(by.binding('radio')));
+
     $scope.addDataToTable = function () {
         var money = Number($scope.money);
         if(!isNaN(money)) {
@@ -36,3 +39,24 @@ myApp.controller('asideMenuCtrl', function ($scope, $rootScope) {
 myApp.controller('tableController', function () {
 
 })
+
+
+myApp.service('storageService', storageServiceMemory);
+
+function storageServiceMemory() {
+    var storage = [];
+
+
+    function addDataToTable(obj) {
+        storage.push(obj);
+    }
+
+    function listRecords() {
+        return storage.slice();
+    }
+
+
+    this.addDataToTable = addDataToTable;
+    this.listRecords = listRecords;
+
+}
