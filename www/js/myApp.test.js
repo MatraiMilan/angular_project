@@ -43,6 +43,8 @@ describe("myApp", function () {
 
         expect(rootScope.dataArray.length).to.equal(1);
 
+
+
     }));
 
 });
