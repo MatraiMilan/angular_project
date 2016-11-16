@@ -7,7 +7,7 @@
     <link type="text/css" href="bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body style="overflow: hidden">
 
 <div style="padding-left: 5%; padding-right: 5%">
 
@@ -23,35 +23,41 @@
                         <span>Income: </span><input type="radio" name="minusOrPlus" ng-model="radio" value="income" />
                         <span>Expense: </span><input type="radio" name="minusOrPlus" ng-model="radio" value="expense" />
                     </div>
+
                     <div class="input-group">
                         <input type="text" class="form-control" ng-model="money" placeholder="Amount (in HUF)">
                         <span class="input-group-addon">Ft</span><br />
                     </div>
-                        <!--<input type="text" name="money" ng-model="money" placeholder="Amount (in HUF)"> <span >Ft</span><br />-->
+
                     <div class="input-group">
                         <input type="date" class="form-control" ng-model="date"> <br />
                     </div>
-                        <!--<input type="date" name="date" ng-model="date"><br />-->
+
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Description" ng-model="desc"> <br />
                     </div>
-                    <!--<input type="text" name="description" placeholder="description" ng-model="desc"><br />-->
 
                     <div class="btn-group" role="group" aria-label="...">
-                        <input type="button" class="btn btn-default" value="add" ng-click="addDataToTable()">
+                        <input type="button" class="btn btn-default" value="Add" ng-click="addDataToTable()">
                     </div>
 
                     <br/>
+
                     <label style="padding-top: 5%">Balance: </label>
                     <div class="input-group">
                         <input type="text" class="form-control" ng-model="balance">
                         <span class="input-group-addon">Ft</span><br />
                     </div>
+
+                    <div class="btn-group" role="group" aria-label="..." style="padding-top: 5%">
+                        <input type="button" class="btn btn-default" value="Reset Table" ng-click="resetDataArray()">
+                    </div>
+
                 </form>
             </div>
         </div>
 
-        <div id="tableDiv" ng-controller="tableController" class="panel panel-default col-xs-8">
+        <div id="tableDiv" ng-controller="tableController" class="panel panel-default col-xs-8" style="overflow-y: scroll; height: 85vh">
 
             <table class="table">
                 <thead>
